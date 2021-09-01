@@ -17,3 +17,30 @@ let wrap = type => str => `<${type}>${str}<${type}>`;
 let transform = pipe(trim,toLower,wrap('h1'));
 let output = transform(' hello WORLD    ');
 console.log(output);
+
+// 浅拷贝
+let user = {
+    name: 'zero',
+    age:100
+}
+
+let lowerCopyUser = {...user,name:'zz'};//复制user里的内容 并修改名字为zz
+
+console.table({user,lowerCopyUser});
+// 深拷贝
+let userFullInfo = {
+    name: 'zero',
+    address:{
+        country:'china',
+        city:'beijing'
+    }
+}
+let deepCopyUser = {//深拷贝user 并修改地址中的城市为长沙
+    ...userFullInfo,
+    address:{
+        ...userFullInfo.address,
+        city:'changsha'
+    }
+}
+console.table({userFullInfo,deepCopyUser});
+
