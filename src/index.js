@@ -11,9 +11,9 @@ let o = '<div>' + i.trim().toLowerCase() + '</div>';
 let trim = str => str.trim();
 let toLower = str => str.toLowerCase();
 let wrapDiv = str => `<div>${str}</div>`;
-
+//若想自定义包装类型 则可按照类型返回一个函数
+let wrap = type => str => `<${type}>${str}<${type}>`;
 //函数式 将函数组合，按照给定的顺序执行 命名为为一个新的函数
-let transform = pipe(trim,toLower,wrapDiv);
-
+let transform = pipe(trim,toLower,wrap('h1'));
 let output = transform(' hello WORLD    ');
 console.log(output);
